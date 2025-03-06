@@ -1,6 +1,5 @@
 import React from "react";
-import CreateTask from "../components/CreateTask";
-import { Auth, Home, NotFound, Profile, SignIn, SignUp } from "../pages";
+import { Home, NotFound, Profile, SignIn, SignUp } from "../pages";
 
 export interface IRoute {
   path: string;
@@ -30,6 +29,6 @@ export const publicRoutes: IRoute[] = [
     path: "/404",
     component: NotFound,
     layout: null,
-  },
+  }
 ];
 export const privateRoutes: IRoute[] = [];
