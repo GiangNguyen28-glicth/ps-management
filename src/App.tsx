@@ -1,32 +1,25 @@
-import { Fragment } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { publicRoutes } from "./routes";
+import { partition } from "lodash";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { DefaultLayout } from "./layouts";
+import { publicRoutes } from "./routes";
 
 const App = () => {
+  const [routesWithLayout, routesWithoutLayout] = partition(publicRoutes, route => {
+    return route.isUseDefaultLayout;
+  });
   return (
     <Router>
-      <div className="flex flex-col h-screen">
+      <div className='flex flex-col h-screen'>
         <Routes>
-          {publicRoutes.map((route, index) => {
+          <Route element={<DefaultLayout />}>
+            {routesWithLayout.map((route, index) => {
+              const Page = route.component;
+              return <Route key={index} path={route.path} element={<Page />} />;
+            })}
+          </Route>
+          {routesWithoutLayout.map((route, index) => {
             const Page = route.component;
-            let Layout = DefaultLayout;
-            if (route.layout) {
-              Layout = route.layout;
-            } else if (route.layout === null) {
-              Layout = Fragment as any;
-            }
-            return (
-              <Route
-                key={index}
-                path={route.path}
-                element={
-                  <Layout>
-                    <Page />
-                  </Layout>
-                }
-              />
-            );
+            return <Route key={index} path={route.path} element={<Page />} />;
           })}
         </Routes>
       </div>

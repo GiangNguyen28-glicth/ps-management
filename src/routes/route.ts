@@ -4,31 +4,33 @@ import { Home, NotFound, Profile, SignIn, SignUp } from "../pages";
 export interface IRoute {
   path: string;
   component: React.ComponentType;
-  layout?: any;
+  isUseDefaultLayout: boolean;
 }
 export const publicRoutes: IRoute[] = [
   {
-    path: "/sign-in",
-    component: SignIn,
-    layout: null,
-  },
-  {
-    path: "/sign-up",
-    component: SignUp,
-    layout: null,
-  },
-  {
     path: "/profile",
     component: Profile,
+    isUseDefaultLayout: true
   },
   {
     path: "*",
     component: Home,
+    isUseDefaultLayout: true
   },
   {
     path: "/404",
     component: NotFound,
-    layout: null,
+    isUseDefaultLayout: false
+  },
+  {
+    path: "/sign-in",
+    component: SignIn,
+    isUseDefaultLayout: false
+  },
+  {
+    path: "/sign-up",
+    component: SignUp,
+    isUseDefaultLayout: false
   }
 ];
 export const privateRoutes: IRoute[] = [];

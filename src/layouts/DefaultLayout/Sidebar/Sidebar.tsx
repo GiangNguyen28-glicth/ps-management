@@ -6,70 +6,59 @@ import {
   faBars,
   faClipboard,
   faArrowRight,
-  faArrowDown,
+  faArrowDown
 } from "@fortawesome/free-solid-svg-icons";
-type Props = {};
 const SIDE_BAR_MENU = [
   {
-    icon: <FontAwesomeIcon className="" icon={faGlobe as any}></FontAwesomeIcon>,
+    icon: <FontAwesomeIcon className='' icon={faGlobe} />,
     title: "Summary",
-    link: "",
+    to: ""
   },
   {
-    icon: <FontAwesomeIcon className="" icon={faBarsStaggered as any}></FontAwesomeIcon>,
+    icon: <FontAwesomeIcon className='' icon={faBarsStaggered} />,
     title: "Timeline",
-    link: "",
+    to: ""
   },
   {
-    icon: <FontAwesomeIcon className="" icon={faBars as any}></FontAwesomeIcon>,
+    icon: <FontAwesomeIcon className='' icon={faBars} />,
     title: "Backlog",
-    link: "",
-  },
+    to: ""
+  }
 ];
-export const Sidebar = (props: Props) => {
+export const Sidebar = () => {
   const [isOpenPlaining, setIsOpenPlaining] = useState(false);
+  const toggleIcon = isOpenPlaining ? faArrowDown : faArrowRight;
   return (
-    <div className="flex flex-col max-w-3xs w-full px-4 border-r">
-      <div className="flex w-full gap-2 py-8">
-        <div className="flex items-center bg-blue-400 rounded">
-          <FontAwesomeIcon className="px-2 text-white text-xl" icon={faClipboard as any}></FontAwesomeIcon>
+    <aside className='flex flex-col px-4 border-r w-[20%]'>
+      <div className='flex w-full gap-2 py-8'>
+        <div className='flex items-center bg-blue-400 rounded'>
+          <FontAwesomeIcon className='px-2 text-xl text-white' icon={faClipboard} />
         </div>
-        <div className="flex flex-col justify-between">
-          <p className="font-bold">Project</p>
-          <span className="text-xs">Project type</span>
+        <div className='flex flex-col justify-between'>
+          <p className='font-bold'>Project</p>
+          <p className='text-xs'>Project type</p>
         </div>
       </div>
-      <div className="flex flex-col">
-        <div className="flex items-center">
-          {!isOpenPlaining ? (
-            <button className="pr-2 hover:cursor-pointer" onClick={() => setIsOpenPlaining(!isOpenPlaining)}>
-              <FontAwesomeIcon
-                className="text-xs w-4"
-                icon={faArrowRight as any}
-              ></FontAwesomeIcon>
-            </button>
-          ) : (
-            <button className="pr-2 hover:cursor-pointer" onClick={() => setIsOpenPlaining(!isOpenPlaining)}>
-              <FontAwesomeIcon
-                className="text-xs w-4"
-                icon={faArrowDown as any}
-              ></FontAwesomeIcon>
-            </button>
-          )}
-          <p className="font-bold uppercase text-xs">Plaining</p>
+      <div className='flex flex-col'>
+        <div className='flex items-center'>
+          <button className='pr-2 hover:cursor-pointer' onClick={() => setIsOpenPlaining(!isOpenPlaining)}>
+            <FontAwesomeIcon className='w-4 text-xs' icon={toggleIcon} />
+          </button>
+          <p className='text-xs font-bold uppercase'>Plaining</p>
         </div>
-
-        {isOpenPlaining && <div className="flex flex-col pl-4 pr-2 py-2">
-          {SIDE_BAR_MENU.map((item, index) => {
-            return (
-              <div key={index} className="inline-flex items-center gap-2 p-2 hover:cursor-pointer hover:bg-gray-200">
-                {item.icon}
-                <p>{item.title}</p>
-              </div>
-            );
-          })}
-        </div>}
+        {isOpenPlaining && (
+          <div className='flex flex-col py-2 pl-4 pr-2'>
+            {SIDE_BAR_MENU.map((item, index) => {
+              return (
+                <div key={index} className='inline-flex items-center gap-2 p-2 hover:cursor-pointer hover:bg-gray-200'>
+                  {item.icon}
+                  <p>{item.title}</p>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
-    </div>
+    </aside>
   );
 };

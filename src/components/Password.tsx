@@ -13,25 +13,21 @@ const Password = (props: Props) => {
     setTypePassword(typePassword === "text" ? "password" : "text");
     setIsPasswordVisible(!isPasswordVisible);
   };
+  const iconEye = isPasswordVisible ? faEyeSlash : faEye;
   return (
     <div className={"flex flex-2/1 rounded items-center border focus-within:border-blue-400"}>
       <input
         type={typePassword}
         required={true}
         value={password}
-        className="border-none rounded-sm p-2 outline-none w-full"
+        className='w-full p-2 border-none rounded-sm outline-none'
         placeholder={props.placeHolder}
         onChange={e => setPassword(e.target.value)}
-      ></input>
-      {isPasswordVisible ? (
-        <button className="block mx-auto p-2 hover:cursor-pointer">
-          <FontAwesomeIcon className="" onClick={handleEyeIconClick} icon={faEye as any} />
-        </button>
-      ) : (
-        <button className="block mx-auto p-2 hover:cursor-pointer">
-          <FontAwesomeIcon className="" onClick={handleEyeIconClick} icon={faEyeSlash as any} />
-        </button>
-      )}
+      />
+
+      <button className='block p-2 mx-auto hover:cursor-pointer' onClick={handleEyeIconClick}>
+        <FontAwesomeIcon className='' icon={iconEye} />
+      </button>
     </div>
   );
 };

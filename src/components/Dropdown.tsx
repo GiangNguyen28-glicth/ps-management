@@ -1,8 +1,9 @@
 import { isNil } from "lodash";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 type SubItem = {
   title: string;
-  link: string;
+  to: string;
 };
 
 type Props = {
@@ -66,16 +67,16 @@ export const Dropdown = (props: Props) => {
           <div className="py-1" role="none">
             {props.children.map((item, index) => {
               return (
-                <a
+                <Link
                   key={index}
-                  href={item.link}
+                  to={item.to}
                   className="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabIndex={-1}
                   id={`menu-item-${index}`}
                 >
                   {item.title}
-                </a>
+                </Link>
               );
             })}
           </div>

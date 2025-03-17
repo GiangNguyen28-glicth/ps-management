@@ -3,11 +3,11 @@ export const psImg =
 export const MENU_ITEM_HEADER = [
   {
     title: "Your work",
-    icon: "",
+    icon: ""
   },
   {
     title: "Projects",
-    icon: "",
+    icon: ""
   },
   {
     title: "Filters",
@@ -15,22 +15,22 @@ export const MENU_ITEM_HEADER = [
     children: [
       {
         title: "View all filters",
-        link: "/",
+        to: "/"
       },
       {
         title: "View all issues",
-        link: "/",
-      },
-    ],
+        to: "/"
+      }
+    ]
   },
   {
     title: "Dashboards",
-    icon: "",
+    icon: ""
   },
   {
     title: "Apps",
-    icon: "",
-  },
+    icon: ""
+  }
 ];
 
 export const routes = {

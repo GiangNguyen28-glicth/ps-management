@@ -1,19 +1,16 @@
-import React from "react";
+import { Fragment } from "react/jsx-runtime";
+import { Outlet } from "react-router-dom";
 import { Header } from "../components";
 import { Sidebar } from "./Sidebar/Sidebar";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export const DefaultLayout = (props: Props) => {
+export const DefaultLayout = () => {
   return (
-    <div className="container">
-      <Header></Header>
-      <div className="container">
-        <Sidebar></Sidebar>
+    <Fragment>
+      <Header />
+      <div className='container'>
+        <Sidebar />
       </div>
-      <div className="container">{props.children}</div>
-    </div>
+      <Outlet />
+    </Fragment>
   );
 };
