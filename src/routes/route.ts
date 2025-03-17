@@ -1,6 +1,5 @@
 import React from "react";
 import { Home, NotFound, Profile, SignIn, SignUp } from "../pages";
-
 export interface IRoute {
   path: string;
   component: React.ComponentType;
